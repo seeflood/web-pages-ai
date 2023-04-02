@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vue News Feed</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+    /* Styles for the navigation bar */
+    nav {
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    }
+    /* Styles for the news feeds */
+    .news-feed {
+      border: 1px solid #ccc;
+      margin: 10px;
+      padding: 10px;
+    }
+    .news-feed h2 {
+      margin-top: 0;
+    }
+    .vote-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+    .vote-button {
+      background-color: #ccc;
+      border: none;
+      color: #333;
+      cursor: pointer;
+      padding: 5px 10px;
+      font-size: 14px;
+    }
+    .vote-button:hover {
+      background-color: #999;
+      color: #fff;
+    }
+    .upvote {
+      border-radius: 5px 0 0 5px;
+    }
+    .downvote {
+      border-radius: 0 5px 5px 0;
+    }
+    /* Responsive styles */
+    @media screen and (max-width: 600px) {
+      .news-feed {
+        margin: 10px 0;
+      }
+      .vote-button {
+        font-size: 12px;
+        padding: 3px 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- Navigation bar -->
+    <nav>
+      <h1>Vue News Feed</h1>
+      <button>Menu</button>
+    </nav>
+    <!-- News feeds -->
+    <div class="news-feed" v-for="(feed, index) in newsFeeds" :key="index">
+      <h2>{{ feed.title }}</h2>
+      <p>{{ feed.content }}</p>
+      <div class="vote-buttons">
+        <button class="vote-button upvote" @click="feed.upvotes++">Upvote {{ feed.upvotes }}</button>
+        <button class="vote-button downvote" @click="feed.downvotes++">Downvote {{ feed.downvotes }}</button>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Define the Vue app
+    new Vue({
+      el: '#app',
+      data: {
+        newsFeeds: [
+          {
+            title: 'News Feed 1',
+            content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+            upvotes: 0,
+            downvotes: 0
+          },
+          {
+            title: 'News Feed 2',
+            content: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+            upvotes: 0,
+            downvotes: 0
+          }
+        ]
+      }
+    });
+  </script>
+</body>
+</html>
